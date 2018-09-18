@@ -119,6 +119,10 @@ var TableBody = function (_Component) {
     var type = column.type,
         selectable = column.selectable;
 
+    if (typeof column.render === 'function') {
+      return column.render(row, column, index);
+    }
+
     if (type === 'expand') {
       return React.createElement(
         'div',
