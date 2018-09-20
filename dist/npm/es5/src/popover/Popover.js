@@ -44,6 +44,10 @@ var Popover = function (_Component) {
 
     var _this = (0, _possibleConstructorReturn3.default)(this, (Popover.__proto__ || Object.getPrototypeOf(Popover)).call(this, props));
 
+    _this.handleClick = function () {
+      return _this.__handleClick__REACT_HOT_LOADER__.apply(_this, arguments);
+    };
+
     _this.state = {
       showPopper: false
     };
@@ -51,6 +55,11 @@ var Popover = function (_Component) {
   }
 
   (0, _createClass3.default)(Popover, [{
+    key: '__handleClick__REACT_HOT_LOADER__',
+    value: function __handleClick__REACT_HOT_LOADER__() {
+      return this.__handleClick__REACT_HOT_LOADER__.apply(this, arguments);
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
@@ -70,13 +79,7 @@ var Popover = function (_Component) {
           });
         });
 
-        document.addEventListener('click', function (e) {
-          if (!_this2.element || _this2.element.contains(e.target) || !_this2.reference || _this2.reference.contains(e.target) || !popper || popper.contains(e.target)) return;
-
-          _this2.setState({
-            showPopper: false
-          });
-        });
+        document.addEventListener('click', this.handleClick);
       } else if (trigger === 'hover') {
         this.reference.addEventListener('mouseenter', this.handleMouseEnter.bind(this));
         this.reference.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
@@ -114,6 +117,17 @@ var Popover = function (_Component) {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       this.reference.parentNode.replaceChild(this.reference.cloneNode(true), this.reference);
+      document.removeEventListener('click', this.handleClick);
+    }
+  }, {
+    key: '__handleClick__REACT_HOT_LOADER__',
+    value: function __handleClick__REACT_HOT_LOADER__(e) {
+      var popper = this.refs.popper;
+      if (!this.element || this.element.contains(e.target) || !this.reference || this.reference.contains(e.target) || !popper || popper.contains(e.target)) return;
+
+      this.setState({
+        showPopper: false
+      });
     }
   }, {
     key: 'handleMouseEnter',

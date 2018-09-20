@@ -14,6 +14,15 @@ var Popover = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 
+    _this.handleClick = function (e) {
+      var popper = _this.refs.popper;
+      if (!_this.element || _this.element.contains(e.target) || !_this.reference || _this.reference.contains(e.target) || !popper || popper.contains(e.target)) return;
+
+      _this.setState({
+        showPopper: false
+      });
+    };
+
     _this.state = {
       showPopper: false
     };
@@ -38,13 +47,7 @@ var Popover = function (_Component) {
         });
       });
 
-      document.addEventListener('click', function (e) {
-        if (!_this2.element || _this2.element.contains(e.target) || !_this2.reference || _this2.reference.contains(e.target) || !popper || popper.contains(e.target)) return;
-
-        _this2.setState({
-          showPopper: false
-        });
-      });
+      document.addEventListener('click', this.handleClick);
     } else if (trigger === 'hover') {
       this.reference.addEventListener('mouseenter', this.handleMouseEnter.bind(this));
       this.reference.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
@@ -80,6 +83,7 @@ var Popover = function (_Component) {
 
   Popover.prototype.componentWillUnmount = function componentWillUnmount() {
     this.reference.parentNode.replaceChild(this.reference.cloneNode(true), this.reference);
+    document.removeEventListener('click', this.handleClick);
   };
 
   Popover.prototype.handleMouseEnter = function handleMouseEnter() {

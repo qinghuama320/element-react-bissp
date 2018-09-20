@@ -45,7 +45,12 @@ var Pre = function Pre(props) {
   return _react2.default.createElement(
     'button',
     { type: 'button', className: 'btn-prev ' + disabled, onClick: props.prev },
-    _react2.default.createElement('i', { className: 'el-icon el-icon-arrow-left' })
+    _react2.default.createElement('i', { className: 'el-icon el-icon-arrow-left' }),
+    _react2.default.createElement(
+      'span',
+      { className: 'preStr' },
+      props.preStr
+    )
   );
 };
 
@@ -55,6 +60,11 @@ var Next = function Next(props) {
   return _react2.default.createElement(
     'button',
     { type: 'button', className: 'btn-next ' + disabled, onClick: props.next },
+    _react2.default.createElement(
+      'span',
+      { className: 'nextStr' },
+      props.nextStr
+    ),
     _react2.default.createElement('i', { className: 'el-icon el-icon-arrow-right' })
   );
 };
@@ -370,6 +380,7 @@ var Pagination = function (_Component3) {
       var TEMPLATE_MAP = {
         prev: _react2.default.createElement(Pre, {
           key: 'pre',
+          preStr: this.props.preStr,
           internalCurrentPage: internalCurrentPage,
           prev: this.pre.bind(this)
         }),
@@ -387,6 +398,7 @@ var Pagination = function (_Component3) {
         }),
         next: _react2.default.createElement(Next, {
           key: 'next',
+          nextStr: this.props.nextStr,
           internalCurrentPage: internalCurrentPage,
           internalPageCount: this.internalPageCount(),
           next: this.next.bind(this)
