@@ -162,6 +162,7 @@ var Table = function (_Component) {
               style: { width: this.bodyWidth },
               className: 'el-table__empty-block'
             },
+            React.createElement('div', null),
             React.createElement(
               'span',
               { className: 'el-table__empty-text' },
