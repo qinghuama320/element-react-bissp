@@ -94,13 +94,11 @@ var Select = function (_Component) {
       });
     }
 
-    if (props.value != this.props.value) {
-      this.setState({
-        value: props.value
-      }, function () {
-        _this2.handleValueChange();
-      });
-    }
+    this.setState({
+      value: props.value
+    }, function () {
+      _this2.handleValueChange();
+    });
   };
 
   Select.prototype.componentWillUpdate = function componentWillUpdate(props, state) {
@@ -168,7 +166,7 @@ var Select = function (_Component) {
       })[0];
 
       if (_selected) {
-        this.state.selectedLabel = _selected.props.label || _selected.props.value;
+        this.setState({ selectedLabel: _selected.props.label || _selected.props.value });
       }
     }
   };
