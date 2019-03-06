@@ -235,7 +235,7 @@ var TableStore = function (_Component) {
         selectedRows: selectedRows
       }));
 
-      if ((!this._isMounted || data !== this.props.data) && defaultSort) {
+      if (defaultSort && defaultSort.prop) {
         var prop = defaultSort.prop,
             _defaultSort$order = defaultSort.order,
             order = _defaultSort$order === undefined ? 'ascending' : _defaultSort$order;
