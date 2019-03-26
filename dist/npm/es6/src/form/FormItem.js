@@ -16,7 +16,8 @@ var FormItem = function (_Component) {
     _this.state = {
       error: '',
       valid: false,
-      validating: false
+      validating: false,
+      bluring: false
     };
     return _this;
   }
@@ -68,6 +69,15 @@ var FormItem = function (_Component) {
     this.validate('blur');
   };
 
+  FormItem.prototype.onFieldFocus = function onFieldFocus() {
+    if (this.state.bluring) {
+      this.setState({
+        validating: true,
+        error: ''
+      });
+    }
+  };
+
   FormItem.prototype.onFieldChange = function onFieldChange() {
     var _this2 = this;
 
@@ -77,9 +87,11 @@ var FormItem = function (_Component) {
       return;
     }
 
-    setTimeout(function () {
-      _this2.validate('change');
-    });
+    if (!this.state.bluring) {
+      setTimeout(function () {
+        _this2.validate('change');
+      });
+    }
   };
 
   FormItem.prototype.validate = function validate(trigger, cb) {
@@ -97,6 +109,11 @@ var FormItem = function (_Component) {
       return true;
     }
 
+    if (rules[0].trigger === 'blur') {
+      this.setState({ bluring: true });
+    } else {
+      this.setState({ bluring: false });
+    }
     this.setState({ validating: true });
 
     var descriptor = (_descriptor = {}, _descriptor[this.props.prop] = rules, _descriptor);
@@ -216,7 +233,7 @@ var FormItem = function (_Component) {
           'is-error': error !== '',
           'is-validating': validating,
           'is-required': this.isRequired() || required
-        }), onBlur: this.onFieldBlur.bind(this), onChange: this.onFieldChange.bind(this) },
+        }), onBlur: this.onFieldBlur.bind(this), onFocus: this.onFieldFocus.bind(this), onChange: this.onFieldChange.bind(this) },
       label && React.createElement(
         'label',
         { className: 'el-form-item__label', style: this.labelStyle() },

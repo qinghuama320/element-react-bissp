@@ -47,7 +47,8 @@ var FormItem = function (_Component) {
     _this.state = {
       error: '',
       valid: false,
-      validating: false
+      validating: false,
+      bluring: false
     };
     return _this;
   }
@@ -106,6 +107,16 @@ var FormItem = function (_Component) {
       this.validate('blur');
     }
   }, {
+    key: 'onFieldFocus',
+    value: function onFieldFocus() {
+      if (this.state.bluring) {
+        this.setState({
+          validating: true,
+          error: ''
+        });
+      }
+    }
+  }, {
     key: 'onFieldChange',
     value: function onFieldChange() {
       var _this2 = this;
@@ -116,9 +127,11 @@ var FormItem = function (_Component) {
         return;
       }
 
-      setTimeout(function () {
-        _this2.validate('change');
-      });
+      if (!this.state.bluring) {
+        setTimeout(function () {
+          _this2.validate('change');
+        });
+      }
     }
   }, {
     key: 'validate',
@@ -135,6 +148,11 @@ var FormItem = function (_Component) {
         return true;
       }
 
+      if (rules[0].trigger === 'blur') {
+        this.setState({ bluring: true });
+      } else {
+        this.setState({ bluring: false });
+      }
       this.setState({ validating: true });
 
       var descriptor = (0, _defineProperty3.default)({}, this.props.prop, rules);
@@ -262,7 +280,7 @@ var FormItem = function (_Component) {
             'is-error': error !== '',
             'is-validating': validating,
             'is-required': this.isRequired() || required
-          }), onBlur: this.onFieldBlur.bind(this), onChange: this.onFieldChange.bind(this) },
+          }), onBlur: this.onFieldBlur.bind(this), onFocus: this.onFieldFocus.bind(this), onChange: this.onFieldChange.bind(this) },
         label && _react2.default.createElement(
           'label',
           { className: 'el-form-item__label', style: this.labelStyle() },
