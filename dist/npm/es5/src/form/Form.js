@@ -45,23 +45,14 @@ var Form = function (_Component) {
   (0, _createClass3.default)(Form, [{
     key: 'componentDidUpdate',
     value: function componentDidUpdate(newProps) {
-      var model = newProps.model;
-
-      var oldModel = this.props.model;
-      if (!model) return;
-      var diff = Object.keys(model).filter(function (key) {
-        return model[key] !== oldModel[key];
-      });
+      /* const {model} = newProps
+      const oldModel = this.props.model
+      if (!model) return
+      const diff = Object.keys(model).filter(key => model[key] !== oldModel[key])
       if (diff.length) {
-        this.state.fields.filter(function (_ref) {
-          var props = _ref.props;
-          return props.prop.match(diff);
-        }).map(function (field) {
-          return field.validate('', function () {
-            return undefined;
-          });
-        });
-      }
+        this.state.fields.filter(({props}) => props.prop.match(diff))
+          .map(field => field.validate('', () => undefined));
+      } */
     }
   }, {
     key: 'getChildContext',

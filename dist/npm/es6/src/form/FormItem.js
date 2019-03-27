@@ -122,7 +122,7 @@ var FormItem = function (_Component) {
 
     validator.validate(model, { firstFields: true }, function (errors) {
       _this3.setState({
-        error: errors && (trigger === 'blur' || trigger === 'change') ? errors[0].message : '',
+        error: errors ? errors[0].message : '',
         validating: false,
         valid: !errors
       }, function () {
