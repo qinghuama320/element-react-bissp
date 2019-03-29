@@ -17,7 +17,7 @@ var FormItem = function (_Component) {
       error: '',
       valid: false,
       validating: false,
-      bluring: false
+      bluring: true
     };
     return _this;
   }
