@@ -15,11 +15,11 @@ var defaults = {
     realWidth: 48,
     className: 'el-table-column--selection'
   },
-  expand: {
-    width: 48,
-    minWidth: 48,
-    realWidth: 48
-  },
+  // expand: {
+  //   width: 48,
+  //   minWidth: 48,
+  //   realWidth: 48,
+  // },
   index: {
     width: 48,
     minWidth: 48,
