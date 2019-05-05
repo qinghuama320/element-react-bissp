@@ -100,6 +100,7 @@ var Table = function (_Component) {
       if (rightFixedBodyWrapper) {
         rightFixedBodyWrapper.scrollTop = bodyWrapper.scrollTop;
       }
+      this.props.onScroll(bodyWrapper);
     }
   }, {
     key: 'bindRef',
