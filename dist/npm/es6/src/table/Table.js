@@ -57,7 +57,8 @@ var Table = function (_Component) {
     if (rightFixedBodyWrapper) {
       rightFixedBodyWrapper.scrollTop = bodyWrapper.scrollTop;
     }
-    this.props.onScroll(bodyWrapper);
+
+    typeof this.props.onScroll === 'function' && this.props.onScroll(bodyWrapper);
   };
 
   Table.prototype.bindRef = function bindRef(key) {

@@ -398,10 +398,11 @@ var TableStore = function (_Component) {
 
     var _column = column,
         sortMethod = _column.sortMethod,
-        property = _column.property;
+        property = _column.property,
+        sortable = _column.sortable;
 
     var sortedData = void 0;
-    if (!order) {
+    if (!order || sortable === 'custom') {
       sortedData = data;
     } else {
       var flag = order === 'ascending' ? 1 : -1;
