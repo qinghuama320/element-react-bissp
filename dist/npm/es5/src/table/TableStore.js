@@ -433,25 +433,16 @@ var TableStore = function (_Component) {
       return selectedRows.includes(row);
     }
   }, {
-    key: 'changeSortCondition',
-    value: function changeSortCondition(column, order) {
-      var _this6 = this;
-
-      var shouldDispatchEvent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-
+    key: 'getSortedData',
+    value: function getSortedData(data, column, order) {
       if (!column) {
         ;
 
         var _state3 = this.state;
         column = _state3.sortColumn;
         order = _state3.sortOrder;
-      }var data = this.state.filteredData.slice();
-
-      if (!column) {
-        this.setState({
-          data: data
-        });
-        return;
+      }if (!column) {
+        return data;
       }
 
       var _column = column,
@@ -464,19 +455,44 @@ var TableStore = function (_Component) {
         sortedData = data;
       } else {
         var flag = order === 'ascending' ? 1 : -1;
+        sortedData = data.slice();
         if (sortMethod) {
-          sortedData = data.sort(function (a, b) {
+          sortedData.sort(function (a, b) {
             return sortMethod(a, b) ? flag : -flag;
           });
         } else {
-          sortedData = data.sort(function (a, b) {
+          sortedData.sort(function (a, b) {
             var aVal = (0, _utils.getValueByPath)(a, property);
             var bVal = (0, _utils.getValueByPath)(b, property);
             return aVal === bVal ? 0 : aVal > bVal ? flag : -flag;
           });
         }
       }
+      return sortedData;
+    }
+  }, {
+    key: 'changeSortCondition',
+    value: function changeSortCondition(column, order) {
+      var _this6 = this;
 
+      var shouldDispatchEvent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+      if (!column) {
+        ;
+
+        var _state4 = this.state;
+        column = _state4.sortColumn;
+        order = _state4.sortOrder;
+      }var data = this.state.filteredData.slice();
+
+      if (!column) {
+        this.setState({
+          data: data
+        });
+        return;
+      }
+
+      var sortedData = this.getSortedData(data, column, order);
       this.setState({
         sortColumn: column,
         sortOrder: order,
@@ -533,10 +549,10 @@ var TableStore = function (_Component) {
       var _props4 = this.props,
           currentRowKey = _props4.currentRowKey,
           rowKey = _props4.rowKey;
-      var _state4 = this.state,
-          selectedRows = _state4.selectedRows,
-          data = _state4.data,
-          selectable = _state4.selectable;
+      var _state5 = this.state,
+          selectedRows = _state5.selectedRows,
+          data = _state5.data,
+          selectable = _state5.selectable;
 
       var selectableData = selectable ? data.filter(function (row, index) {
         return selectable(row, index);
