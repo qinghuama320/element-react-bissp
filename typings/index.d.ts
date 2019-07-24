@@ -288,6 +288,7 @@ declare namespace ElementReact {
     lockScroll?: boolean
     closeOnClickModal?: boolean
     closeOnPressEscape?: boolean
+    showClose?: boolean
     onCancel?(): void
     onOpen?(...args): any
     opClose?(...args): any
@@ -631,6 +632,7 @@ declare namespace ElementReact {
     rowClassName?(row?, index?): void
     style?: Object
     highlightCurrentRow?: boolean
+    emptyText?: string,
     onCurrentChange?(): void
     onSelectAll?(): void
     onSelectChange?(): void
@@ -760,6 +762,7 @@ declare namespace ElementReact {
     hideOnClick?: boolean
     onClick?(): void
     onCommand?(command?: string, instance?): void
+    onVisibleChange?: any
   }
   interface DropdownMenuProps extends ElementReactLibs.ComponentProps<{}> { }
   interface DropdownItemProps extends ElementReactLibs.ComponentProps<{}> {
