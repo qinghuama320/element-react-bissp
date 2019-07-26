@@ -625,17 +625,21 @@ declare namespace ElementReact {
   interface TableProps extends ElementReactLibs.ComponentProps<{}> {
     columns?: TableColumn[]
     data?: Object[]
+    defaultSort?: Object
     height?: number
     stripe?: boolean
     border?: boolean
     fit?: boolean
     rowClassName?(row?, index?): void
+    rowKey?(row?): void
     style?: Object
     highlightCurrentRow?: boolean
-    emptyText?: string,
     onCurrentChange?(): void
     onSelectAll?(): void
     onSelectChange?(): void
+    onRowClick?(row: any): void
+    onSortChange?({column: any, prop: any, order: any}): void
+    RowUpdater?: any
   }
   export class Table extends ElementReactLibs.Component<TableProps, {}> { }
 
