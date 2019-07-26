@@ -634,6 +634,7 @@ declare namespace ElementReact {
     rowKey?(row?): void
     style?: Object
     highlightCurrentRow?: boolean
+    emptyText?: string
     onCurrentChange?(): void
     onSelectAll?(): void
     onSelectChange?(): void
