@@ -641,6 +641,7 @@ declare namespace ElementReact {
     onRowClick?(row: any): void
     onSortChange?({column: any, prop: any, order: any}): void
     RowUpdater?: any
+    onScroll?(bodyWrapper?): void
   }
   export class Table extends ElementReactLibs.Component<TableProps, {}> { }
 
