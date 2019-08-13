@@ -104,7 +104,9 @@ var FormItem = function (_Component) {
   }, {
     key: 'onFieldBlur',
     value: function onFieldBlur() {
-      this.validate('blur');
+      setTimeout(() => {
+        this.validate('blur');
+      }, 180);
     }
   }, {
     key: 'onFieldFocus',

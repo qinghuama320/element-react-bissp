@@ -66,7 +66,9 @@ var FormItem = function (_Component) {
   };
 
   FormItem.prototype.onFieldBlur = function onFieldBlur() {
-    this.validate('blur');
+    setTimeout(() => {
+      this.validate('blur');
+    }, 180);
   };
 
   FormItem.prototype.onFieldFocus = function onFieldFocus() {
