@@ -361,6 +361,7 @@ declare namespace ElementReact {
   interface TabsPaneProps extends ElementReactLibs.ComponentProps<{}> {
     label?: string | React.ReactElement<any>
     name?: string
+    code?: string
     disabled?: boolean
     closable?: boolean
   }
