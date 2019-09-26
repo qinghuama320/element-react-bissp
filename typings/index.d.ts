@@ -361,6 +361,7 @@ declare namespace ElementReact {
   interface TabsPaneProps extends ElementReactLibs.ComponentProps<{}> {
     label?: string | React.ReactElement<any>
     name?: string
+    code?: string
     disabled?: boolean
     closable?: boolean
   }
@@ -635,6 +636,7 @@ declare namespace ElementReact {
     style?: Object
     highlightCurrentRow?: boolean
     emptyText?: string
+    expandRowKeys?: any[]
     onCurrentChange?(): void
     onSelectAll?(): void
     onSelectChange?(): void
